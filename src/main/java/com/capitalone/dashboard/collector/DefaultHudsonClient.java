@@ -111,7 +111,7 @@ public class DefaultHudsonClient implements HudsonClient {
 				// String url = joinURL(instanceUrl, new String[] { API_SUFFIX +
 				// buildJobQueryString()
 				// + URLEncoder.encode("{" + i + "," + (i + pageSize) + "}", "UTF-8") });
-				String url = "http://54.202.213.82:8081/nexus/service/local/repositories";
+				String url = "http://admin:admin123@54.202.213.82:8081/nexus/service/local/repositories";
 
 				ResponseEntity<String> responseEntity = makeRestCall(url);
 				if (responseEntity == null) {
@@ -183,7 +183,7 @@ public class DefaultHudsonClient implements HudsonClient {
 
 		try {
 			// String url = joinURL(instanceUrl, new String[]{JOBS_URL_SUFFIX});
-			String url = "http://54.202.213.82:8081/nexus/service/local/repositories";
+			String url = "http://admin:admin123@54.202.213.82:8081/nexus/service/local/repositories";
 			ResponseEntity<String> responseEntity = makeRestCall(url);
 			if (responseEntity == null) {
 				return result;
