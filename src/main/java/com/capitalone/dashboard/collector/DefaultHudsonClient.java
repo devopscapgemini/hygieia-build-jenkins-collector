@@ -6,7 +6,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -109,8 +108,11 @@ public class DefaultHudsonClient implements HudsonClient {
 			// settings.getPageSize() + "...");
 
 			try {
-				String url = joinURL(instanceUrl, new String[] { API_SUFFIX + buildJobQueryString()
-						+ URLEncoder.encode("{" + i + "," + (i + pageSize) + "}", "UTF-8") });
+				// String url = joinURL(instanceUrl, new String[] { API_SUFFIX +
+				// buildJobQueryString()
+				// + URLEncoder.encode("{" + i + "," + (i + pageSize) + "}", "UTF-8") });
+				String url = "http://54.202.213.82:8081/nexus/service/local/repositories";
+
 				ResponseEntity<String> responseEntity = makeRestCall(url);
 				if (responseEntity == null) {
 					break;
