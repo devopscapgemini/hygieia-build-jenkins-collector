@@ -195,7 +195,7 @@ public class DefaultHudsonClient implements HudsonClient {
 			JSONParser parser = new JSONParser();
 			try {
 				JSONObject object = (JSONObject) parser.parse(returnJSON);
-				JSONArray jobs = getJsonArray(object, "data");
+				JSONArray jobs = getJsonArray(object, "repositories.data");
 				result = jobs.size();
 			} catch (ParseException e) {
 				LOG.error("Parsing jobs on instance: " + instanceUrl, e);
@@ -658,11 +658,11 @@ public class DefaultHudsonClient implements HudsonClient {
 			}
 		}
 		// Basic Auth only.
-		if (StringUtils.isNotEmpty(userInfo)) {
-			return rest.exchange(thisuri, HttpMethod.GET, new HttpEntity<>(createHeaders(userInfo)), String.class);
-		} else {
-			return rest.exchange(thisuri, HttpMethod.GET, null, String.class);
-		}
+		// if (StringUtils.isNotEmpty(userInfo)) {
+		return rest.exchange(thisuri, HttpMethod.GET, new HttpEntity<>(createHeaders(userInfo)), String.class);
+		// } else {
+		// return rest.exchange(thisuri, HttpMethod.GET, null, String.class);
+		// }
 
 	}
 
