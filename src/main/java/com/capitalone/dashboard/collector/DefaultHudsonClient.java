@@ -658,11 +658,11 @@ public class DefaultHudsonClient implements HudsonClient {
 			}
 		}
 		// Basic Auth only.
-		// if (StringUtils.isNotEmpty(userInfo)) {
-		return rest.exchange(thisuri, HttpMethod.GET, new HttpEntity<>(createHeaders(userInfo)), String.class);
-		// } else {
-		// return rest.exchange(thisuri, HttpMethod.GET, null, String.class);
-		// }
+		if (StringUtils.isNotEmpty(userInfo)) {
+			return rest.exchange(thisuri, HttpMethod.GET, new HttpEntity<>(createHeaders(userInfo)), String.class);
+		} else {
+			return rest.exchange(thisuri, HttpMethod.GET, null, String.class);
+		}
 
 	}
 
