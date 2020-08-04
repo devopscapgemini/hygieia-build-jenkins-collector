@@ -147,8 +147,8 @@ public class DefaultHudsonClient implements HudsonClient {
 			} catch (RestClientException rce) {
 				LOG.error("client exception loading jobs details", rce);
 				throw rce;
-			} catch (UnsupportedEncodingException uee) {
-				LOG.error("unsupported encoding for loading jobs details", uee);
+				// } catch (UnsupportedEncodingException uee) {
+				// LOG.error("unsupported encoding for loading jobs details", uee);
 			} catch (URISyntaxException e1) {
 				LOG.error("wrong syntax url for loading jobs details", e1);
 			}
