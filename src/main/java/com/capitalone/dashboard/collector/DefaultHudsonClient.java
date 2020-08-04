@@ -631,6 +631,7 @@ public class DefaultHudsonClient implements HudsonClient {
 
 		// get userinfo from URI or settings (in spring properties)
 		if (StringUtils.isEmpty(userInfo)) {
+			LOG.error("Enter StringUtils.isEmpty()");
 			List<String> servers = this.settings.getServers();
 			List<String> usernames = this.settings.getUsernames();
 			List<String> apiKeys = this.settings.getApiKeys();
@@ -665,6 +666,7 @@ public class DefaultHudsonClient implements HudsonClient {
 		}
 		// Basic Auth only.
 		if (StringUtils.isNotEmpty(userInfo)) {
+			LOG.error("Enter StringUtils.isNotEmpty()");
 			return rest.exchange(thisuri, HttpMethod.GET, new HttpEntity<>(createHeaders(userInfo)), String.class);
 		} else {
 			return rest.exchange(thisuri, HttpMethod.GET, null, String.class);
@@ -688,7 +690,7 @@ public class DefaultHudsonClient implements HudsonClient {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.set(HttpHeaders.AUTHORIZATION, authHeader);
-		headers.set(HttpHeaders.ACCEPT, "application/json");
+		headers.add(HttpHeaders.ACCEPT, "application/json");
 		return headers;
 	}
 
