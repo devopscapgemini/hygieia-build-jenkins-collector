@@ -91,13 +91,13 @@ public class DefaultHudsonClient implements HudsonClient {
 	@Override
 	public Map<HudsonJob, Map<jobData, Set<BaseModel>>> getInstanceJobs(String instanceUrl) {
 		LOG.debug("Enter getInstanceJobs");
-		LOG.error("Enter getInstanceJobs Prathamesh");
+		LOG.error("Enter getInstanceJobs - 1");
 
 		// Map<HudsonJob, Set<Build>> result = new LinkedHashMap<>();
 		Map<HudsonJob, Map<jobData, Set<BaseModel>>> result = new LinkedHashMap<>();
 		int jobsCount = getJobsCount(instanceUrl);
 		LOG.debug("Number of jobs " + jobsCount);
-		LOG.error("Number of jobs Prathamesh" + jobsCount);
+		LOG.error("Number of jobs - 1 " + jobsCount);
 
 		int i = 0, pageSize = settings.getPageSize();
 		// Default pageSize to 1000 for backward compatibility of settings when pageSize
@@ -182,22 +182,26 @@ public class DefaultHudsonClient implements HudsonClient {
 	 */
 	private int getJobsCount(String instanceUrl) {
 		int result = 0;
-
+		LOG.error("Enter getJobsCount-1");
 		try {
 			// String url = joinURL(instanceUrl, new String[]{JOBS_URL_SUFFIX});
-			String url = "http://admin:admin123@54.202.213.82:8081/nexus/service/local/repositories";
+			String url = "http://54.202.213.82:8081/nexus/service/local/repositories";
 			ResponseEntity<String> responseEntity = makeRestCall(url);
+			LOG.error("Enter getJobsCount-2 " + responseEntity);
+
 			if (responseEntity == null) {
 				return result;
 			}
 			String returnJSON = responseEntity.getBody();
 			if (StringUtils.isEmpty(returnJSON)) {
+				LOG.error("Enter getJobsCount-3 " + returnJSON + " - " + result);
 				return result;
 			}
 			JSONParser parser = new JSONParser();
 			try {
 				JSONObject object = (JSONObject) parser.parse(returnJSON);
-				JSONArray jobs = getJsonArray(object, "repositories.data");
+
+				JSONArray jobs = getJsonArray(object, "data");
 				result = jobs.size();
 			} catch (ParseException e) {
 				LOG.error("Parsing jobs on instance: " + instanceUrl, e);
