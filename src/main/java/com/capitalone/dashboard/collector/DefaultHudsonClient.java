@@ -689,8 +689,8 @@ public class DefaultHudsonClient implements HudsonClient {
 		String authHeader = "Basic " + new String(encodedAuth);
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.set(HttpHeaders.AUTHORIZATION, authHeader);
-		headers.add(HttpHeaders.ACCEPT, "application/json");
+		// headers.set(HttpHeaders.AUTHORIZATION, authHeader);
+		headers.set(HttpHeaders.ACCEPT, "application/json");
 		LOG.error("Headers ppp: " + headers.toString());
 		return headers;
 	}
