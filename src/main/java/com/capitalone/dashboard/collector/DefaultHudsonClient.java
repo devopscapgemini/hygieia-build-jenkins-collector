@@ -627,7 +627,8 @@ public class DefaultHudsonClient implements HudsonClient {
 	protected ResponseEntity<String> makeRestCall(String sUrl) throws URISyntaxException {
 		LOG.debug("Enter makeRestCall " + sUrl);
 		URI thisuri = URI.create(sUrl);
-		String userInfo = thisuri.getUserInfo();
+		// String userInfo = thisuri.getUserInfo();
+		String userInfo = "TEST_USER_INFO";
 
 		// get userinfo from URI or settings (in spring properties)
 		if (StringUtils.isEmpty(userInfo)) {
