@@ -135,7 +135,7 @@ public class DefaultHudsonClient implements HudsonClient {
 						final String jobURL = getString(jsonJob, "resourceURI");
 						final String jobClass = getString(jsonJob, "provider");
 
-						LOG.debug("Process jobName " + jobName + " jobURL " + jobURL + " jobClass " + jobClass);
+						LOG.error("Process jobName " + jobName + " jobURL " + jobURL + " jobClass " + jobClass);
 
 						recursiveGetJobDetails(jsonJob, jobName, jobURL, instanceUrl, parser, result);
 					}
@@ -178,19 +178,16 @@ public class DefaultHudsonClient implements HudsonClient {
 	 */
 	private int getJobsCount(String instanceUrl) {
 		int result = 0;
-		LOG.error("Enter getJobsCount-1");
 		try {
 			// String url = joinURL(instanceUrl, new String[]{JOBS_URL_SUFFIX});
 			String url = "http://54.202.213.82:8081/nexus/service/local/repositories";
 			ResponseEntity<String> responseEntity = makeRestCall(url);
-			LOG.error("Enter getJobsCount-2 " + responseEntity);
 
 			if (responseEntity == null) {
 				return result;
 			}
 			String returnJSON = responseEntity.getBody();
 			if (StringUtils.isEmpty(returnJSON)) {
-				LOG.error("Enter getJobsCount-3 " + returnJSON + " - " + result);
 				return result;
 			}
 			JSONParser parser = new JSONParser();
@@ -628,7 +625,6 @@ public class DefaultHudsonClient implements HudsonClient {
 
 		// get userinfo from URI or settings (in spring properties)
 		if (StringUtils.isEmpty(userInfo)) {
-			LOG.error("Enter StringUtils.isEmpty()");
 			List<String> servers = this.settings.getServers();
 			List<String> usernames = this.settings.getUsernames();
 			List<String> apiKeys = this.settings.getApiKeys();
@@ -663,7 +659,6 @@ public class DefaultHudsonClient implements HudsonClient {
 		}
 		// Basic Auth only.
 		if (StringUtils.isNotEmpty(userInfo)) {
-			LOG.error("Enter StringUtils.isNotEmpty()");
 			return rest.exchange(thisuri, HttpMethod.GET, new HttpEntity<>(createHeaders(userInfo)), String.class);
 		} else {
 			return rest.exchange(thisuri, HttpMethod.GET, null, String.class);
