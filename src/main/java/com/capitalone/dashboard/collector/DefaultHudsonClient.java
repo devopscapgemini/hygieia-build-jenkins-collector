@@ -6,7 +6,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +21,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONArray;
@@ -684,12 +682,13 @@ public class DefaultHudsonClient implements HudsonClient {
 	}
 
 	protected HttpHeaders createHeaders(final String userInfo) {
-		byte[] encodedAuth = Base64.encodeBase64(userInfo.getBytes(StandardCharsets.US_ASCII));
-		String authHeader = "Basic " + new String(encodedAuth);
+		// byte[] encodedAuth =
+		// Base64.encodeBase64(userInfo.getBytes(StandardCharsets.US_ASCII));
+		// String authHeader = "Basic " + new String(encodedAuth);
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.set(HttpHeaders.CONTENT_TYPE, "application/json");
-		headers.add(HttpHeaders.AUTHORIZATION, authHeader);
+		// headers.add(HttpHeaders.AUTHORIZATION, authHeader);
 		headers.add(HttpHeaders.ACCEPT, "application/json");
 		LOG.error("Headers ppp: " + headers.toString());
 		return headers;
